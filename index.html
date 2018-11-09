@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>I have changed the Title of the document</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive_style.css">
+    <script>
+	    $(document).ready(function(){
+	    	// handle the mouseenter functionality
+            $(".overlay_box").mouseenter(function(){
+                $(this).addClass("hover");
+            })
+            // handle the mouseleave functionality
+            .mouseleave(function(){
+                $(this).removeClass("hover");
+            });
+	    });
+
+	    $(function(){
+			$("#header_div").before($(".top_header").clone().addClass("fixed"));
+			//$("#top_header_clone").addClass("fixed");
+			$(window).scroll(function(){
+				if($(window).scrollTop() >= 50){
+					//alert('');
+					$('.top_header.fixed').addClass('slideDown');
+				}
+			else{
+				$('.top_header.fixed').removeClass('slideDown');
+			}
+			
+			});
+
+
+			/* another script of sticky header also commented on css file possition: relative and possition: fixed problem */
+			// $(window).scroll(function(){
+		 //         var sticky = $('.top_header'),
+		 //         scroll = $(window).scrollTop();
+		 //        if (scroll >= 200){
+		 //            sticky.addClass('fixed');
+		 //            sticky.slideDown(1000);
+		 //        }else{
+		 //            sticky.removeClass('fixed');
+		 //            sticky.removeAttr("style"); //slideDown adds the style="block" which needs to be removed so that next time slideDown will work
+		 //        }
+		 //    });
+		});
+	</script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<!--Header Start-->
+        <div id="header_div" class="header bg-blue bg_pattern">
+            <div class="top_header">
+                <div class="container color_white">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="logo">
+                            	<img src="images/logo.png">
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+							<nav class="navbar navbar-default hidden-xs">
+                              	<div class="navbar-header">
+	                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                                  <span class="icon-bar"></span>
+	                                  <span class="icon-bar"></span>
+	                                  <span class="icon-bar"></span>
+	                                </button>
+                              	</div>
+                              	<div class="navbar-collapse collapse">
+	                                <ul class="nav navbar-nav">
+	                                    <li class="menu__item active"><a href="#">Demos</a></li>
+	                                    <li class="menu__item"><a href="#">Headers</a></li>
+	                                    <li class="menu__item"><a href="#">Footers</a></li>
+	                                    <li class="menu__item"><a href="#">Blog</a></li>
+	                                    <li class="menu__item"><a href="#">Shop</a></li>
+	                                </ul>
+                            	</div> 
+                            </nav>                       
+                        </div>
+                        <div class="col-sm-2">
+                        	<a class="btn btn_sm btn_default float-right" target="blank" href="#">Buy Now!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner">
+                <div class="container color_white">
+                    <div class="row">
+                    	<div class="col-sm-8 banner-left">
+                    		<div class="title-top-image"></div>
+                    		<h1>All-in-one Theme</h1>
+                    		<h2>for all kinds of services Business!</h2>
+                    		<p>Boost your business with incredible functionality and efficient UI!</p>
+                    		<a class="btn btn_md btn_secondary" href="#demos">Live Demo</a>
+                    	</div>
+                    	<div class="col-sm-4">
+                    		<img class="banner-right-img hidden-sm" src="images/image-man-1.png">
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Header end-->
+
+        <!-- Content Start -->
+        <div class="content">
+            <div class="sections">
+                <div class="section1">
+                    <div class="container text-center">
+                    	<h2 class="color_blue"><span class="h1 color_orange">10+</span> Amazing Demos Await for you!</h2>
+                    	<p class="sub-heading">Boost your business with incredible functionality and efficient UI!</p>
+                        <div class="row">
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-1.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Handyman</p>
+                        	</div>
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-2.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Electrician</p>
+                        	</div>
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-13.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Welding</p>
+                        	</div>
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-4.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Window Installation</p>
+                        	</div>
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-1.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Air Conditioner</p>
+                        	</div>
+                        	<div class="col-sm-6 col-md-6 col-lg-4 demo-box">
+                        		<div class="overlay_box">
+	                        		<div class="demo-image">
+	                        			<img src="images/image-skin-6.png">
+	                        		</div>
+	                        		<div class="demo_image_overlay">
+					                    <div class="btn btn_sm btn_secondary demo-btn" href="#">Live demo</div>
+					                </div>
+				                </div>
+                        		<p class="color_blue">Plumber</p>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section2">
+                	<div class="container color_white">
+                		<div class="row">
+                			<div class="col-xs-12 col-md-4 col-sm-4">
+                				<div class="img-cnr hidden-xs">
+                					<img class="image-right" src="images/image-man-2.png">
+                				</div>
+                			</div>
+                			<div class="col-xs-12 col-md-8 col-sm-8 section2-content">
+                				<h2>Invest in the Fututre of Your Bussiness!</h2>
+                				<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                				<a class="btn btn_md btn_primary" target="blank" href="#">Buy Johnnygo Now!</a>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="section3 bg_gray bg_pattern">
+                	<div class="container text-center">
+                		<h2 class="color_blue">Diverse Header Styles for Customization!</h2>
+                		<p>With JohnnyGo theme you get 7 gorgeous header layouts and 3 eye-catching footer variations that’ll make your website look 100% winning!</p>
+                		<div class="row">
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img class="first" src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img class="first" src="images/image-header-2.png">
+                					<img class="second" src="images/image-header-2-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-md-offset-4 col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-header-1.png">
+                					<img class="second" src="images/image-header-1-hover.png">
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="section4">
+                	<div class="container text-center">
+                		<h2 class="color_blue">Diverse Footer Styles for Customization!</h2>
+                		<p>With JohnnyGo theme you get 7 gorgeous header layouts and 3 eye-catching footer variations that’ll make your website look 100% winning!</p>
+                		<div class="row">
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-footer-1.png">
+                					<img src="images/image-footer-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-footer-2.png">
+                					<img src="images/image-footer-2-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-footer-1.png">
+                					<img src="images/image-footer-1-hover.png">
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="section5 bg-blue bg_pattern">
+                	<div class="container text-center color_white">
+                		<h2><span class="h1 color_orange">5</span> Gorgeous Blog Layouts!</h2>
+                		<p>Deliver your ideas in a classy way using grid, masonry, justify and other glorious blog formats available in JohnnyGo theme!</p>
+                		<div class="row">
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-blog-1.png">
+                					<img src="images/image-blog-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-blog-2.png">
+                					<img src="images/image-blog-2-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-blog-1.png">
+                					<img src="images/image-blog-1-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-offset-2 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-blog-2.png">
+                					<img src="images/image-blog-2-hover.png">
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="hover-image-box">
+                					<img src="images/image-blog-1.png">
+                					<img src="images/image-blog-1-hover.png">
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="section6">
+                	<div class="container">
+                		<h2 class="color_blue text-center">Embrace the True Diversity of Choice<br> with Multiple Pages!</h2>
+                		<div class="row">
+                			<div class="col-sm-6 col-md-4">
+                				<div class="project_box">
+                					<img src="images/image-article-1.png">
+                					<h3>A Variety of Static Pages at Hand</h3>
+                					<p>Getting tired of creating pages yourself? You won’t need to do it anymore with eye-catching Contacts, Careers and Pricing  static pages provided for you! </p>
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="project_box">
+                					<img src="images/image-article-2.png">
+                					<h3>Extraordinary Dynamic Pages for All Purposes</h3>
+                					<p>Bring your services online, share your client's’ testimonials and introduce your team members using attractively-looking dynamic pages!</p>
+                				</div>
+                			</div>
+                			<div class="col-sm-6 col-md-4">
+                				<div class="project_box">
+                					<img src="images/image-article-3.png">
+                					<h3>A Set of Functional Pages Within Reach</h3>
+                					<p>With JohnnyGo template you get Coming Soon, Maintenance, 404 and Search Results pages, fitted for all occasions!</p>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="section7 bg_dark_gray bg_pattern">
+                	<div class="container text-center">
+                		<h2 class="color_white">Astonishing Shop Layouts on Board!</h2>
+                		<p class="color_orange"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ut libero nostrum illum maiores totam.</p>
+                		<div class="row">
+                			<div class="col-sm-12">
+                				<img src="images/image-man-4.png">
+                			</div>
+                		</div>
+                	</div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Content End -->
+
+        <!-- Footer start -->
+        <div class="footer">
+            <div class="container text-center color_white">
+                <div class="row">
+                	<div class="col-sm-12">
+                		<div class="footer-title-top-image"></div>
+                		<h2>Become the Owner of</h2>
+                		<h1>JohnnyGo Multi-Skin Theme!</h1>
+                		<a class="btn btn_md btn_primary" target="blank" href="#">Purchase now!</a>
+                		<div class="copy-right">@ 2017 jetimpex, Inc and Web Template Ltd. All Rights Reserved.</div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer end -->
+
+	</div>
+</body>
+
+</html>

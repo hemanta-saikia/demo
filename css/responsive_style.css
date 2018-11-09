@@ -1,0 +1,53 @@
+/* Tablet Landscape */
+
+@media screen and (min-width: 1200px) {
+	.container {
+    width: 940px;
+	}
+
+}
+
+/* Tablet Landscape */
+
+@media screen and (max-width: 1050px) {
+
+}
+
+/* Tabled Portrait */
+@media screen and (max-width: 1199px) {
+	
+}
+
+@media screen and (max-width: 991px) {
+
+	.nav>li>a {
+    padding-right: 0px;
+	}
+
+}
+@media screen and (max-width: 767px) {
+
+	.logo {
+    position: absolute;
+    width: 40%;
+    text-align: left;
+    margin-top: 12px;
+	}
+
+}
+
+@media screen and (max-width: 806px) {
+	
+}
+
+@media screen and (max-width: 477px) {
+	
+}
+
+@media screen and (max-width: 444px) {
+	
+}
+@media screen and (max-width: 354px) {
+	
+}
+
