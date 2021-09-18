@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Comparison Layout</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Font Awesome -->
+  	<link rel="stylesheet" href="plugins/font-awesome/css/fontawesome-all.min.css">
+  	<!-- Select2 -->
+  	<link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+  	<!-- custom -->
+  	<link rel="stylesheet" href="assets/css/custom-btn.css">
+  	<!-- custom -->
+  	<link rel="stylesheet" href="assets/css/custom.css">
+  	
+  	<style type="text/css">
+  		.container {
+		    padding: 40px 0px;
+		}
+  		.symptom-row {
+		    font-size: 0;
+		    border-bottom: 1px solid #DDD;
+		}
+		.symptom-row.heading {
+		    background: #EEE;
+		}
+		.symptom-row.heading {
+		    background: #EEE;
+		}
+		.symptom-row.initial {
+		    background: #D6F8CA;
+		}
+  		.source-code, .symptom, .percentage, .info, .command {
+		    display: inline-block;
+		    font-size: 16px;
+		    padding: 10px 0px;
+		    text-align: left;
+    		vertical-align: top;
+    		overflow-wrap: break-word;
+		}
+		.source-code.heading, .symptom.heading, .percentage.heading, .info.heading, .command.heading {
+			font-weight: bold;
+		}
+		.source-code {
+		    width: 12%;
+		    /*background: #6666;*/
+		}
+		.symptom {
+		    width: 47%;
+		    /*background: yellow;*/
+		}
+		.percentage {
+		    width: 5%;
+		    /*background: red;*/
+		}
+		.info {
+		    width: 18%;
+		    /*background: #7585;*/
+		}
+		.command {
+		    width: 18%;
+		    /*background: blue;*/
+		}
+
+		ol, ul {
+		    list-style: none;
+		    margin: 0px;
+		    padding: 0px;
+		}
+		ul.info-linkage-group {
+		    width: auto;
+		    /* background-color: #2B2B2B; */
+		    background-color: #555;
+		    display: inline-block;
+		    border-radius: 6px;
+		}
+		ul.info-linkage-group li:first-child, ul.info-linkage-group li:first-child a {
+		    border-top-left-radius: 5px;
+		    border-bottom-left-radius: 5px;
+		}
+		ul.info-linkage-group li {
+		    float: left;
+		    border-right: 1px solid #a9a9a9;
+		}
+		ul.info-linkage-group li a {
+		    font-size: 14px;
+		    padding: 5px;
+		    display: inline-block;
+		    color: #fff;
+		    text-decoration: none;
+		}
+		ul.info-linkage-group li:last-child, ul.info-linkage-group li:last-child a {
+		    border-top-right-radius: 5px;
+		    border-bottom-right-radius: 5px;
+		    border-right: none;
+		}
+
+		ul.command-group {
+		    width: auto;
+		    /* background-color: #2B2B2B; */
+		    background-color: #1a2f39;
+		    display: inline-block;
+		    border-radius: 6px;
+		}
+		ul.command-group li:first-child, ul.command-group li:first-child a {
+		    border-top-left-radius: 5px;
+		    border-bottom-left-radius: 5px;
+		}
+		ul.command-group li {
+		    float: left;
+		    border-right: 1px solid #a9a9a9;
+		}
+		ul.command-group li a {
+		    font-size: 14px;
+		    padding: 5px;
+		    display: inline-block;
+		    color: #fff;
+		    text-decoration: none;
+		}
+		ul.command-group li:last-child, ul.command-group li:last-child a {
+		    border-top-right-radius: 5px;
+		    border-bottom-right-radius: 5px;
+		    border-right: none;
+		}
+		.hidden, .initialsConnectedCE{
+			display: none;
+		}
+		.initialsConnectedCE .initial{
+			background-color: #666633 !important;
+			color: #FFFFFF !important;
+		}
+		.comparativesConnectedCE .comparing{
+			background-color: #DDDDDD;
+		}
+		.disconnectCE{
+			color: #5CB85C !important;
+		}
+		.toggleInitialCE, .toggleComparativeCE{
+			color: #5CB85C !important;
+		}
+		.popup-overlay {
+		visibility:hidden;
+		}
+
+		.popup-content {
+		visibility:hidden;
+		}
+		.popup-overlay.active{
+		visibility:visible;
+		}
+
+		.popup-content.active {
+		visibility:visible;
+		}
+  	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="symptom-row heading" id="A">
+					<div class="source-code heading">Source</div>
+					<div class="symptom heading">Symptom</div>
+					<div class="percentage heading">%</div>
+					<div class="info heading">INFO & LINKAGE</div>
+					<div class="command heading">Command</div>
+				</div>
+				<div class="A1 symptom-row initial" id="A1">
+					<div class="source-code">HnRA11 1811</div>
+					<div class="symptom">The pain begins in the back of the head and upper neck and is described as a band-like tightness or pressure.</div>
+					<div class="percentage"></div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command"><ul class="command-group"></ul></div>
+				</div>
+				<div class="A1_B1 symptom-row comparing" id="A1_B1">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Headaches triggered by changes in sleep patterns.</div>
+					<div class="percentage">13%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A1_B2 symptom-row comparing" id="A1_B2">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Attacks tend to occur at about the same time every day</div>
+					<div class="percentage">5%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A1_B5 symptom-row comparing" id="A1_B5">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Blood clotting is common feature.</div>
+					<div class="percentage">19%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A2 symptom-row initial" id="A2">
+					<div class="source-code">HnRA11 1811</div>
+					<div class="symptom">Acute migraine, not responding to treatment</div>
+					<div class="percentage"></div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command"><ul class="command-group"></ul></div>
+				</div>
+				<div class="A2_B3 symptom-row comparing" id="A2_B3">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Shakiness, anxiety, nervousness</div>
+					<div class="percentage">50%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A2_B1 symptom-row comparing" id="A2_B1">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Headaches triggered by changes in sleep patterns.</div>
+					<div class="percentage">20%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A2_B2 symptom-row comparing" id="A2_B2">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Attacks tend to occur at about the same time every day</div>
+					<div class="percentage">15%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A3 symptom-row initial" id="A3">
+					<div class="source-code">HnRA11 1811</div>
+					<div class="symptom">Often is described as pressure encircling the head with the most intense pressure over the eyebrows. </div>
+					<div class="percentage"></div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command"><ul class="command-group"></ul></div>
+				</div>
+				<div class="A3_B3 symptom-row comparing" id="A3_B3">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Shakiness, anxiety, nervousness</div>
+					<div class="percentage">50%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A3_B1 symptom-row comparing" id="A3_B1">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Headaches triggered by changes in sleep patterns.</div>
+					<div class="percentage">20%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+				<div class="A3_B2 symptom-row comparing" id="A3_B2">
+					<div class="source-code">HnRA12 1816</div>
+					<div class="symptom">Attacks tend to occur at about the same time every day</div>
+					<div class="percentage">15%</div>
+					<div class="info">
+						<ul class="info-linkage-group">			
+							<li>				
+								<a title="info" href="javascript:void(0)"><i class="fas fa-info-circle"></i></a>
+							</li>			
+							<li>				
+								<a title="Symptom edit" href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>			
+							</li>			
+							<li>				
+								<a title="comment" href="javascript:void(0)"><i class="fas fa-comment-alt"></i></a>	
+							</li>			
+							<li>				
+								<a title="footnote" href="javascript:void(0)"><i class="fas fa-sticky-note"></i></a>			
+							</li>			
+							<li>				
+								<a class="translation" title="translation" href="javascript:void(0)">T</a>			
+							</li>			
+							<li>				
+								<a title="Earlier connections" href="javascript:void(0)" class="plus vbtn link-disabled unclickable"><i class="fas fa-plus"></i></a>			
+							</li>		
+						</ul>
+					</div>
+					<div class="command">
+						<ul class="command-group">			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure connection"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="connect" class="connect"><i class="fas fa-link"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Connect edit" class="connect-edit">CE</a>
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Non secure paste"><i class="fas fa-exclamation-triangle"></i></a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste">P</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Paste edit">PE</a>			
+							</li>			
+							<li>				
+								<a href="javascript:void(0)" title="Swap connect"><i class="fas fa-recycle"></i></a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="unmatched" style="clear: both;width: 100%;border-top: 1px solid #000"></div>
+	<input type='button' value='Submit form' id='submitBtn' />
+	<!--Form to submit all the connections -->
+	<form id="connectionsCE" action="#">
+        <input type="hidden" id="all_connections_CE" value="">
+    </form>
+  	<!--Create the popup body-->
+	<div class="popup-overlay">
+	<!--Creates the popup content-->
+	 <div class="popup-content">
+	    <h2>Pop-Up</h2>
+	    <p><input id="ce" type="text"></p>
+	   <!--popup's close button-->
+	    <button style="float: left" class="edit">Save</button><button style="float: left" class="close">Close</button>    
+	</div>
+	</div>
+	<button style="clear: both;" class="alert">Alert</button>
+	<!--End Popup -->
+	<script type="text/javascript" src="plugins/jquery/jquery/jquery-3.3.1.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="plugins/tinymce/jquery.tinymce.min.js"></script>
+	<script type="text/javascript" src="plugins/tinymce/jquery.tinymce.config.js"></script>
+	<script type="text/javascript" src="plugins/tinymce/tinymce.min.js"></script>
+	<!-- Select2 -->
+	<script src="plugins/select2/dist/js/select2.full.min.js"></script>
+	<script src="assets/js/select2-custom-search-box-placeholder.js"></script>
+	<script src="assets/js/common.js"></script>
+	<script src="assets/js/icons-var.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var cutoff_percentage = 5;
+		var initial_symptoms_original =[];
+		var initial_symptoms_edited =[];
+		var comparative_symptoms_connected =[];
+		var all_comparatives_under_initial = [];//Storing all comparative symptoms under an Initial Symptom
+		var edited_initial;
+		var ceComparativeId, ceInitialId;
+		var initialSymptom, comparativeSymptom, initial_id_getting_removed;
+
+	$(".edit").click(function(){
+		edited_initial = $("#ce").val();
+		$(".popup, .popup-content").removeClass("active");
+		if(edited_initial !== initialSymptom)//Checks if Initial Symptom is changed or not
+		{
+			var percentage;
+			var tmp_array = [];
+			var matching = [];
+			var map = new Map();
+			var comparative_str = '';
+			
+			//We arrange the ID & Symtom together with the delimiter {###} in between
+			initial_symptoms_original.push(ceInitialId+"{#%ID%#}"+initialSymptom);
+			comparative_symptoms_connected.push(ceComparativeId+"{#%ID%#}"+comparativeSymptom);
+			initial_symptoms_edited.push(ceInitialId+"{#%ID%#}"+edited_initial);
+			
+			var ceComparativeIdFull = ceInitialId+"_"+ceComparativeId;
+
+			//We want to retrieve all Comparative Symptom and their ID's in this section
+			//Each Comparative Symtom along with their Initial Symptom is sent as Ajax call to get the Percentage.
+			$('.'+ceInitialId).nextUntil(".initial").each(function()
+			{
+				//We want to store all the Comparative Symptoms in this section i.e., under the Initial Symptom
+				//In this way, we can get back all the original Comparative Symptoms when it is disconnected
+				comparative_str = comparative_str + $(this).get(0).outerHTML;
+				if($(this).attr("id"))
+				{
+					var symp = $(this).find(".symptom").text();
+					tmp_array.push($(this).attr("id")+"{#%ID%#}"+symp);//Creates an array that we would send as Ajax post
+				}
+				var tmp_str = tmp_array.join("{#%%#}");//Converts the array to the desired String format
+				$.ajax({
+					async:false,
+					type: "POST",
+			      	url: "compare-for-connect-edit.php",
+				    data: "initial_symptom="+ceInitialId+"{#%ID%#}"+edited_initial+"&comparative_symptom="+tmp_str,
+				    dataType: "JSON",
+				    success: function(returnedData){
+				    $.each(returnedData, function( key, value ) {
+				    map.set(value.comparing_symptom_id, value.percentage);
+		    
+        			});
+				    },
+				    error: function(xhr, textStatus, error){
+					    console.log(xhr.statusText);
+					    console.log(textStatus);
+					    console.log(error);
+					}
+				});
+			});
+			//We store the entire comparatives section inside the specific Initialsymptom associative array
+			all_comparatives_under_initial[ceInitialId] = comparative_str;
+			
+			//Now we will populate the Initial Symptom with the Edited one
+			$('#' + ceInitialId).find(".symptom").text(edited_initial);
+
+			//Get the HTML row of the Connected Initial Symptom. This already has the new Inital Symptom & Percentage
+			var initialHtml = $('#' + ceInitialId).get(0).outerHTML;
+
+			//Get this Comparing Row HTML to append it to the Initial Id
+			var comparativeHtml = $('#' + ceComparativeIdFull).get(0).outerHTML;
+
+			//(1) First Connect Comparative with Initial above
+			if($('.'+ceInitialId).next().hasClass("comparativesConnectedCE"))
+			{
+				//Next we should confirm that "comparativesConnectedCE" has no children. Only one connect edit can be done.
+				if($('.'+ceInitialId).next(".comparativesConnectedCE").is(':empty'))
+				$('.'+ceInitialId).next(".comparativesConnectedCE").append(comparativeHtml);
+			}
+			else
+			{
+				comparativeHtml = "<div class='comparativesConnectedCE'>"+comparativeHtml+"</div>";
+				//Now append it to Initial Symptom
+				$(comparativeHtml).insertAfter('.' + ceInitialId);
+			}
+			//Replace the received percentage through Ajax for all Comparatives under the Initial
+			//Keys are the Comparative Symptom ID's of that section
+			map.forEach((values,keys)=>{
+				var keys_split = keys.split("_");
+				matching[keys_split[1]] = values;
+				$("."+keys).find(".percentage").text(values+"%");
+
+				if(values < cutoff_percentage)
+					$("."+keys).not('#' + ceComparativeIdFull).addClass("low_percentage");
+			});
+			
+		//(2) Next we connect the Initial Symptom with any matching Comparative Symptom other than this
+		$('[class*=_' + ceComparativeId + ']:not(".'+ceComparativeIdFull+'")').next(".initialsConnectedCE").append(initialHtml);
+				$('[class*=_' + ceComparativeId + ']:not(".'+ceComparativeIdFull+'")').each(function()
+				{
+					if (!$(this).next().hasClass("initialsConnectedCE"))
+					{
+				      $("<div class='initialsConnectedCE'>"+initialHtml+"</div>").insertAfter($(this)); //add there
+				  	}
+				});
+
+				//Update the percentages of Initial Symptoms inside initialsConnectedCE
+				$(".initialsConnectedCE").find(".initial").each(function()
+				{
+					matching_comparative_id = $(this).parent(".initialsConnectedCE").prev(".comparing").attr("id");
+					var matching_comparative_id_array = matching_comparative_id.split("_");
+					matching_comparative_id = matching_comparative_id_array[1];
+
+					if(matching_comparative_id == ceComparativeId)
+					{
+						if(matching[matching_comparative_id] === 0)
+							$(this).find(".percentage").text("0%");
+						else if(matching[matching_comparative_id] !==0)
+							$(this).find(".percentage").text(matching[matching_comparative_id]+"%");
+					}
+				});
+
+			//(3) Finally we hide this Comparative symptom
+			$('.'+ceComparativeIdFull).addClass("hidden");
+			//But not the one that has 'comparativesConnectedCE' as parent
+			$('div.comparativesConnectedCE > div.'+ceComparativeIdFull).removeClass("hidden");
+
+			//We will also hide class="low_percentage" and any initialsConnectedCE under it
+			$('.'+ceInitialId).nextUntil(".initial").each(function()
+			{
+				var comparativesCounter = 0;//Counts for any Comparative Symptom to remove or move to Unmatched
+				if($(this).hasClass("low_percentage"))
+				{
+					//Extract the id first
+					var lowPercentageComparative = $(this).attr("id");
+					var lowPercentageComparativeIds = lowPercentageComparative.split("_");
+					//Find out any mathing Comparative Ids in this document
+					$('[class*=_' + lowPercentageComparativeIds[1] + ']:not(".'+lowPercentageComparative+'")').each(function(){
+						comparativesCounter = comparativesCounter + 1;
+					});
+					if(comparativesCounter > 0)//More similar Comparative Symptoms found in document
+					{
+						$(this).hide();
+						$(this).next(".initialsConnectedCE").hide();
+					}
+					else if(comparativesCounter == 0)//No similar Comparative Symptoms found in document
+					{
+						$(".unmatched").append($(this).clone());
+						$(this).hide();
+						$(this).next(".initialsConnectedCE").hide();
+					}
+				}
+			});
+			//Now we call functions for changing the icons
+			$.fn.comparativesInitialTopIcons(ceComparativeIdFull);
+			$.fn.comparativesInitialBottomIcons(ceComparativeId, ceComparativeIdFull);
+			$.fn.initialsTopIcons(ceInitialId);
+			$.fn.initialsBottomIcons(ceInitialId);
+		}//End Initial Symptom is changed
+		
+	});//End edit click
+	
+	////////////////////WHEN DISCONNECT LINK ICON IS CLICKED/////////////////////////
+	$(document).on("click", ".disconnectCE", function (ev) {
+		var disconnectid_initialId, disconnectid_comparativelId, disconnectedComparativeId, disconnectedInitialId, tmpDisconnectedComparativeId;
+		var newCopy;
+		var thisDisconnecteComparativedId = [];
+		
+		if($(this).parents('div.comparativesConnectedCE').length>0)
+		{
+			
+			var thisComparativeId = $(this).parents('div.comparing').attr("id");
+			var initialParent = $(this).parents('.comparativesConnectedCE').prev(".initial");
+
+			var ids = thisComparativeId.split("_");
+			disconnectid_initialId = ids[0];
+			disconnectid_comparativelId = ids[1];
+			var low_percentage_comparative_id;
+
+			//In this Delete function, we also bring back the Original Initial Symptom
+			$.fn.deleteSymptomsCE(disconnectid_initialId, disconnectid_comparativelId);
+
+			//We will have to unhide any class="low_percentage" and any initialsConnectedCE under it
+			initialParent.not(".initialsConnectedCE .initial").nextUntil(".initial").each(function()
+			{
+				if($(this).hasClass("low_percentage"))
+				{
+					low_percentage_comparative_id = $(this).attr("id");
+					$(this).show();
+					$(this).next(".initialsConnectedCE").show();
+				}
+				//If any matching Comparative Symptom in Unmatched, remove it
+				$(".unmatched").find("."+low_percentage_comparative_id).remove();
+			});
+
+			//Before disconnecting or removing we check if this section has any initialsConnectedCE
+			newCopy = $.fn.copyImageSnap(initialParent);
+
+			initialParent.not(".initialsConnectedCE .initial").nextUntil(".initial").remove();
+			$(newCopy).insertAfter("."+disconnectid_initialId+":not(.initialsConnectedCE .initial)");
+
+
+
+			//Next we will remove the disconnected Initial Symptom from all initialsConnectedCE
+			$(".initialsConnectedCE").each(function()
+			{
+				var thisInitialId = $(this).find(".initial").attr("id");
+				if(thisInitialId == initialParent.attr("id"))
+				{
+					var comparing_id = $(this).prev(".comparing").attr("id");
+					var section_id = comparing_id.split("_");
+					var sec_initial = $("."+section_id[0]);
+					$(this).remove();
+					//If this section has comparativesConnectedCE, then we have to update "all_comparatives_under_initial"
+					//section_id[0] is the Initial Symptom Id of that section
+					if($("."+section_id[0]).next().hasClass("comparativesConnectedCE"))
+						var this_copy = $.fn.copyImageSnap(sec_initial);
+				}
+			});
+
+			//We will have to unhide any class="low_percentage" and any initialsConnectedCE under it
+
+			//Now we call functions for changing the icons
+			$.fn.comparativesNormalIcons(disconnectid_comparativelId, thisComparativeId);
+			$.fn.initialsNormalIcons(initialParent.attr("id"));
+		}//End If
+
+		//If the disconnect click is NOT done in the comparativesConnectedCE, but is done in the initialsConnectedCE.
+		//Again we have to disconnect Initial Symptom from comparativesConnectedCE
+		if($(this).parents('div.initialsConnectedCE').length>0)
+		{
+			var thisComparativeId = $(this).parents('div.initialsConnectedCE').prev("div.comparing").attr("id");
+			disconnectedComparativeText = $("."+thisComparativeId).find(".symptom").text();
+			
+			var thisInitialId = $(this).parents(".initial").attr("id");
+			//var this_initial = $(this).parents(".initial");
+			thisDisconnecteComparativedId = thisComparativeId.split("_");
+			tmpDisconnectedComparativeId = thisInitialId + "_" + thisDisconnecteComparativedId[1];
+
+			$.fn.deleteSymptomsCE(thisInitialId, thisDisconnecteComparativedId[1]);
+
+			$(this).parents("div.initialsConnectedCE").remove();
+			//Next we remove this initialSymptom from all initialsConnected inside .comparing div's
+			$(".comparing").each(function()
+			{
+				if($(this).find(".symptom").text() == disconnectedComparativeText)
+				{
+					$(this).next(".initialsConnectedCE").remove();
+					//initial_id_getting_removed = disconnectedInitialId;
+				}
+			});
+			//Next we remove the comparativesConnectedCE that is connected with the disconnecting Initial Symptom
+			$(".comparativesConnectedCE").each(function()
+			{
+				if($(this).find("."+tmpDisconnectedComparativeId).length !== 0)
+				{
+					var initialParent = $(this).prev(".initial");
+					initialParent.nextUntil(".initial").each(function()
+					{
+						if($(this).hasClass("low_percentage"))
+						{
+							low_percentage_comparative_id = $(this).attr("id");
+							$(this).show();
+							$(this).next(".initialsConnectedCE").show();
+						}
+					});
+					//Before disconnecting or removing we check if this section has any initialsConnectedCE
+					newCopy = $.fn.copyImageSnap(initialParent);
+					
+					initialParent.not(".initialsConnectedCE .initial").nextUntil(".initial").remove();
+					$(newCopy).insertAfter("."+thisInitialId+":not(.initialsConnectedCE .initial)");
+				}
+			});
+			//If any matching Comparative Symptom in Unmatched, remove it
+			$(".unmatched").find("."+low_percentage_comparative_id).remove();
+
+			//Now we call functions for changing the icons
+			$.fn.comparativesNormalIcons(thisDisconnecteComparativedId[1], tmpDisconnectedComparativeId);
+			$.fn.initialsNormalIcons(thisInitialId);
+		}//End If
+	});//End click
+
+/////////////////////////Toggle Icons/////////////////////////
+$(document).on("click", ".toggleInitialCE", function (ev) {
+	$(this).parents('div.initial').next('div.comparativesConnectedCE').toggle();
+	if($(this).find('i').hasClass('fa-plus'))
+		$(this).find('i').removeClass('fa-plus').addClass('fa-minus')
+	else
+		$(this).find('i').removeClass('fa-mius').addClass('fa-plus')
+});
+//We click on the plus/ minus icon of the Comparative Symptom
+$(document).on("click", ".toggleComparativeCE", function (ev) {
+	$(this).parents('div.comparing').next('div.initialsConnectedCE').toggle();
+	if($(this).find('i').hasClass('fa-plus'))
+		$(this).find('i').removeClass('fa-plus').addClass('fa-minus')
+	else
+		$(this).find('i').removeClass('fa-mius').addClass('fa-plus')
+});
+$.fn.copyImageSnap = function(initialParent)
+{
+	var sectionArray = [];
+	initialParent.nextUntil(".initial").each(function()
+	{
+		if($(this).hasClass("initialsConnectedCE"))
+		{
+			var section_comparative_id = $(this).prev(".comparing").attr("id");
+			var section_comparative_html = $(this).html();
+			sectionArray[section_comparative_id] = section_comparative_html;
+		}
+	});
+	const $temp = $('<div>').html(all_comparatives_under_initial[initialParent.attr("id")])
+	$temp.find(".comparing").each(function()
+	{
+		if(!sectionArray.hasOwnProperty($(this).attr("id")))
+		{
+			if($(this).next().hasClass("initialsConnectedCE"))
+			{
+				$(this).next(".initialsConnectedCE").remove();
+				$(this).find(".info").empty();
+				$(this).find(".info").append(comparativesNormalIconsCE_info);
+			}
+		}
+		if(sectionArray.hasOwnProperty($(this).attr("id")))
+		{
+			if($(this).next().hasClass("initialsConnectedCE"))
+			{
+				$(this).next(".initialsConnectedCE").empty();
+				$(this).next(".initialsConnectedCE").append(sectionArray[$(this).attr("id")]);
+				$(this).next(".initialsConnectedCE").css("display", "none");
+			}
+			else if(!$(this).next().hasClass("initialsConnectedCE"))
+			{
+				$(this).after('<div class="initialsConnectedCE" style="display:none">'+sectionArray[$(this).attr("id")]+'</div>');
+			}
+			$(this).find(".info").empty();
+			$(this).find(".info").append(comparativesInitialBottomIconsCE_info);
+		}
+	});
+			return $temp.html();
+}
+$.fn.deleteSymptomsCE = function(initialSymp, comparativeSymp){
+	var tmp_initial_symptoms = [];
+	var tmp_comparative_symptoms = [];
+	var tmp_initial_symptoms_edited = [];
+	var j = 0;
+    for(var i = 0; i < initial_symptoms_original.length; i++)
+    {
+    	var initial_symptoms_original_split = initial_symptoms_original[i].split("{#%ID%#}");
+    	var comparative_symptoms_connected_split = comparative_symptoms_connected[i].split("{#%ID%#}");
+    	var initial_symptoms_edited_split = initial_symptoms_edited[i].split("{#%ID%#}");
+    	if(initial_symptoms_original_split[0] === initialSymp && comparative_symptoms_connected_split[0] === comparativeSymp)
+    	{
+    		//Put back the original Initial Symptom
+    		$('.' + initialSymp).each(function(){
+    			$(this).find(".symptom").text(initial_symptoms_original_split[1]);
+    		});
+    		continue;
+    	}
+    	else
+    	{
+    		tmp_initial_symptoms[j] = initial_symptoms_original[i];
+    		tmp_comparative_symptoms[j] = comparative_symptoms_connected[i];
+    		tmp_initial_symptoms_edited[j] = initial_symptoms_edited[i];
+    		j++;
+    	}
+    }
+    
+    initial_symptoms_original = [];
+    comparative_symptoms_connected = [];
+    initial_symptoms_edited = [];
+    initial_symptoms_original = JSON.parse(JSON.stringify(tmp_initial_symptoms));
+    comparative_symptoms_connected = JSON.parse(JSON.stringify(tmp_comparative_symptoms));
+    initial_symptoms_edited = JSON.parse(JSON.stringify(tmp_initial_symptoms_edited));
+}
+
+///////////////////////WHEN SUBMIT BUTTON IS CLICKED/////////////////////////
+$("#submitBtn").click(function(){
+	var connectionStrCE = '';     
+    for(var i = 0; i < initial_symptoms_original.length; i++)
+    {
+    	connectionStrCE = connectionStrCE + initial_symptoms_edited[i] + "{###}" + initial_symptoms_original[i] + "{###}" + comparative_symptoms_connected[i] + ",";
+    }
+    $("#all_connections_CE").val(connectionStrCE);
+    alert(connectionStrCE);
+   //$("#connections").submit();
+});
+    $(".close").click(function(){
+	$(".popup, .popup-content").removeClass("active");
+});
+///////////////////////WHEN CONNECT EDIT (CE) ICON IS CLICKED/////////////////////////
+	$(document).on("click", ".connect-edit", function (ev) {
+		if($(this).parents('div.comparing').next(".initialsConnectedCE").length > 0)
+			alert("This Comparative Symptom already has a Connect Edit. Please disconnect first.");
+		else
+		{
+			var thisId = $(this).parents('div.comparing').attr('id');
+			var thisIdArray = thisId.split("_");
+			var selector = $("."+thisIdArray[0]).not(".initialsConnectedCE ."+thisIdArray[0]);
+			
+			if(selector.next('.comparativesConnectedCE').length)
+			{
+				if(selector.next('.comparativesConnectedCE').is(':empty'))
+					$.fn.openCEPopup(thisId);
+				else
+					alert("The Initial Symptom is already edited by another Comparative Symptom");
+			}
+			else
+				$.fn.openCEPopup(thisId);
+		}
+	});
+//openCEPopup function will execute only if a particular Initial Symptom has no CE. It will not execute duplicate.
+$.fn.openCEPopup = function(comparativeIdCE){
+			//Get the Initial and comparative Id's
+			var thisIdArray = comparativeIdCE.split("_");
+			ceComparativeId = thisIdArray[1];
+			ceInitialId = thisIdArray[0];
+
+			initialSymptom = $('#' + ceInitialId).find(".symptom").text();
+			comparativeSymptom = $("."+comparativeIdCE).find(".symptom").text();
+			
+			//Open the popup
+			$(".popup, .popup-content").addClass("active");
+			$("#ce").val(initialSymptom);		
+	}
+//Printing all Icons
+$.fn.comparativesNormalIcons = function(comparativeId, sectionComparativeId){
+	$('[class*=_' + comparativeId + ']:not("#'+sectionComparativeId+'")').find(".info").each(function(){
+		$(this).empty();
+		$(this).append(comparativesNormalIconsCE_info);
+	});
+}
+
+$.fn.initialsNormalIcons =  function(initialId){
+	$("."+initialId).not(".initialsConnectedCE .initial").find(".info").empty();
+	$("."+initialId).not(".initialsConnectedCE .initial").find(".info").append(initialsNormalIconsCE_info);
+}
+//Comparatives connected with Initial above
+$.fn.comparativesInitialTopIcons = function(sectionComparativeId){
+	$(".comparativesConnectedCE "+"."+sectionComparativeId).find(".command").empty();
+	$(".comparativesConnectedCE "+"."+sectionComparativeId).find(".command").append(comparativesInitialTopIconsCE_command);
+	//return icons;
+}
+
+//Comparatives connected with Initial below
+$.fn.comparativesInitialBottomIcons = function(comparativeId, sectionComparativeId){
+	$('[class*=_' + comparativeId + ']:not("#'+sectionComparativeId+'")').find(".info").each(function(){
+		$(this).empty();
+		$(this).append(comparativesInitialBottomIconsCE_info);
+	});
+}
+
+//When Initial is at the top with Comparative connected under it
+$.fn.initialsTopIcons = function(initialId){
+	$("."+initialId).not(".initialsConnectedCE .initial").find(".info").empty();
+	$("."+initialId).not(".initialsConnectedCE .initial").find(".info").append(initialsTopIconsCE_info);
+}
+
+//When Initial is under Comparative
+$.fn.initialsBottomIcons = function(initialId){
+	$(".initialsConnectedCE ."+initialId).find(".info").each(function(){
+		$(this).empty();
+		$(this).append(initialsBottomIconsCE_info);	
+	});
+	$(".initialsConnectedCE ."+initialId).find(".command").each(function(){
+		$(this).empty();
+		$(this).append(initialsBottomIconsCE_command);	
+	});
+}
+});
+</script>
+</body>
+</html>
